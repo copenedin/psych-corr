@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def get_predict():
-	predict = pd.read_csv('../plot_entropy_rate_dt/refined_predictability_dist_only_POI_NSD_DBSCAN.csv', index_col=0)
+	predict = pd.read_csv('../plot_entropy_rate_dt/predictability_dist_only_POI_grid.csv', index_col=0)
 
 	col = predict.columns
 	usernames = []
@@ -34,7 +34,7 @@ for question_shorthand in questions_list:
 	for user in usernames:
 		predict[user].loc[1] = answers[user][question_shorthand]['answer']
 
-	if np.abs(predict.T.corr()[1][0]) > 0.15:
+	if np.abs(predict.T.corr()[1][0]) > 0.2:
 		print answers[user][question_shorthand]['question']
 		print question_shorthand
 		print 'Pearson correlation: ' + str(predict.T.corr()[1][0])
